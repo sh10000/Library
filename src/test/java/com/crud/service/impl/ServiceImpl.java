@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @SpringBootTest
 public class ServiceImpl {
     @Autowired
@@ -18,18 +21,14 @@ public class ServiceImpl {
     }
     @Test
     void save() {
-        Book book=new Book();
-        book.setName("测试");
-        book.setType("测试");
-        book.setDescription("测试");
-        System.out.println(bookDao.save(book));
     }
     @Test
     void update() {
-        Book book = bookDao.getById(23);
-        book.setName("测试666");
-        bookDao.updateById(book);
-    }
+        List<Integer> order=new ArrayList<>();
+        order.add(1);
+        order.add(2);
+        order.add(3);
+        System.out.println(bookDao.saveOrder(order));}
     @Test
     void delete() {
         bookDao.removeById(22);

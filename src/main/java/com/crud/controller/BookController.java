@@ -9,6 +9,8 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/books")
 public class BookController {
@@ -51,6 +53,12 @@ public class BookController {
         }
         return  new R(true,page);
 
+    }
+    @PostMapping("/order")
+    public R saveOrder(@RequestBody List<Integer> bookids ){
+        System.out.println(bookids);
+        boolean save=bookService.saveOrder(bookids);
+        return new R<>(true);
     }
 
 

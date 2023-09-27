@@ -8,6 +8,7 @@ import com.crud.Dao.BookDao;
 import com.crud.Dao.UserDao;
 import com.crud.domain.Book;
 import com.crud.domain.Func;
+import com.crud.domain.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -54,11 +55,12 @@ class CrudApplicationTests {
 
     @Test
     void save() {
-        Book book=new Book();
-        book.setName("测试");
-        book.setType("测试");
-        book.setDescription("测试");
-        System.out.println(bookDao.insert(book));
+        Order order =new Order();
+        order.setBookid(1);
+        order.setBuy(0);
+        order.setUid("123");
+        order.setOrderid("dsadads");
+       bookDao.saveOrder(order);
     }
 
     @Test
@@ -78,17 +80,14 @@ class CrudApplicationTests {
 
     }
     @Test
+    void saveorder() {
+
+    }
+    @Test
     void testGETBy(){
         QueryWrapper<Book> qw=new QueryWrapper<>();
         qw.like("name","Spring");
         System.out.println(bookDao.selectList(qw));
-    }
-    @Test
-    void testGETBy2(){
-        String name=null;
-        LambdaQueryWrapper<Book> lqw=new LambdaQueryWrapper<>();
-        lqw.like(name!=null,Book::getName,"Spring");
-        System.out.println(bookDao.selectList(lqw));
     }
 
 }

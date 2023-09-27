@@ -3,7 +3,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/ssm_db?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
+    url: jdbc:mysql://localhost:3306/library?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
     username: root
     password: 123456
     type: com.alibaba.druid.pool.DruidDataSource
@@ -11,5 +11,7 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: auto
-#  configuration:
-#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: false
