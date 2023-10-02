@@ -35,7 +35,8 @@ public class ServiceImpl {
     }
     @Test
     void update() {
-        }
+        System.out.println(orderServer.askBooks(10));
+    }
     @Test
     void delete() {
         bookDao.removeById(22);
@@ -59,12 +60,12 @@ public class ServiceImpl {
         System.out.println(user);
         System.out.println(userService.register(user));
     }
-//    @Test
-//    void testGETBy2(){
-//        String name=null;
-//        LambdaQueryWrapper<Book> lqw=new LambdaQueryWrapper<>();
-//        lqw.like(name!=null,Book::getName,"Spring");
-//        System.out.println(bookDao.selectList(lqw));
-//    }
-
+    @Test
+    void testGETBy2(){
+       orderServer.putOrder(10);
+    }
+    @Test
+    void testOrder(){
+        System.out.println(orderServer.askOrders());
+    }
 }

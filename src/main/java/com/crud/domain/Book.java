@@ -28,7 +28,7 @@ public class Book {
     private String PublicationTime;
     private String languages;
 
-
+    private Double rate;
 
 
 

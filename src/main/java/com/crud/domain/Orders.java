@@ -8,4 +8,5 @@ public class Orders {
     private String username;
     private Double totalAmont;
     private int statusid;
+    private String statusname;
 }

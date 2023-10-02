@@ -43,11 +43,7 @@ class CrudApplicationTests {
     }
     @Test
     void contextLoads() {
-        PasswordEncoder pe=new BCryptPasswordEncoder();
-        String encode = pe.encode("123");
-        System.out.println(encode);
-        boolean matches = pe.matches("1234", encode);
-        System.out.println(matches);
+        System.out.println(orderDao.getOrderBook(10));
     }
     @Test
     void selecrByids() {
@@ -91,7 +87,7 @@ class CrudApplicationTests {
     @Test
     void testGETBy(){
       Produce produce=new Produce();
-      produce.setBookid(1);
+      produce.setProduceid(1);
       produce.setQuantity(1);
       produce.setOrderid(1);
       produce.setUnitprice(1.1);
