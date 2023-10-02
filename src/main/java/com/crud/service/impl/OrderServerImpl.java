@@ -30,22 +30,29 @@ public class OrderServerImpl implements OrderServer {
             // 其他用户信息也可以在 userDetails 中获取
             orders.setUsername(username);
         }
-        int id = 0;
+        int id=0,i = 0;
+        double total=0;
         for (Map.Entry<Integer, Integer> entry : bookQuantityMap.entrySet()) {
+
             Integer bookId = entry.getKey();
             Integer quantity = entry.getValue();
             produce.setUnitprice(bookDao.bookPrice(bookId));
             produce.setQuantity(quantity);
             produce.setTotalprice(produce.getQuantity()*produce.getUnitprice());
             produce.setBookid(bookId);
-            orders.setStatusid(1);
-            orders.setTotalAmont(produce.getQuantity()*produce.getUnitprice());
-            orderDao.addOrder(orders);
-            int generatedId = orders.getOrderid();
-            id=generatedId;
-            produce.setOrderid(generatedId);
+            if(i==0){
+                orders.setStatusid(1);
+                orderDao.addOrder(orders);
+                int generatedId = orders.getOrderid();
+                id=generatedId;
+                i+=1;
+            }
+            total+=produce.getQuantity()*produce.getUnitprice();
+            produce.setOrderid(id);
             orderDao.addBooks(produce);
+
         }
+        orderDao.addAmont(total,id);
         return id;
 
 

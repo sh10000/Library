@@ -25,6 +25,9 @@ public class R<U> {
         this.msg = msg;
     }
 
-    public R(boolean b, int save, String msg) {
+    public R(boolean flag, Object data, String msg) {
+        this.flag=flag;
+        this.data=data;
+        this.msg=msg;
     }
 }

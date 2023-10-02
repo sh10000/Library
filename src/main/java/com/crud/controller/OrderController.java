@@ -14,14 +14,14 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/books")
+@RequestMapping("/order")
 public class OrderController {
     @Autowired
     private OrderServer orderDao;
     @PostMapping("/give")
-    public R saveOrder(@RequestBody List<Integer> bookids ){
+    public R saveOrder(@RequestBody Map<Integer, Integer> bookids ){
         System.out.println(bookids);
-        int save=orderDao.saveOrder((Map<Integer, Integer>) bookids);
-        return new R<>(true,save,"添加成功");
+        int save=orderDao.saveOrder(bookids);
+        return  new R(true,save,"添加成功");
     }
 }
