@@ -44,4 +44,21 @@ public class UserServiceImpl implements UserDetailsService {
         return new User(user.getUsername(), Password, AuthorityUtils.commaSeparatedStringToAuthorityList
                 (func));
     }
+    public Integer changePassword(com.crud.domain.User user) throws UsernameNotFoundException {
+        com.crud.domain.User user1=userDao.findByUsernameUser(user.getUsername());
+        if(user1==null){
+            return 2;
+        }
+        userDao.changePassword(user);
+        return 1;
+    };
+    public Integer register(com.crud.domain.User user) throws UsernameNotFoundException {
+        com.crud.domain.User user1=userDao.findByUsernameUser(user.getUsername());
+        if(user1==null){
+            userDao.register(user);
+            userDao.giveRole(user.getUsername(),"2");
+            return 1;
+        }
+        return 2;
+    };
 }

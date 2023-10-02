@@ -3,6 +3,7 @@ package com.crud.service.impl;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.crud.domain.Book;
+import com.crud.domain.User;
 import com.crud.service.IBookService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ import java.util.List;
 public class ServiceImpl {
     @Autowired
     private IBookService bookDao;
+    @Autowired
+    private UserServiceImpl userService;
 @Test
     void selecrByids() {
         System.out.println(bookDao.getById(1));
@@ -44,12 +47,14 @@ public class ServiceImpl {
         System.out.println(page1.getRecords());
 
     }
-//    @Test
-//    void testGETBy(){
-//        QueryWrapper<Book> qw=new QueryWrapper<>();
-//        qw.like("name","Spring");
-//        System.out.println(bookDao.selectList(qw));
-//    }
+    @Test
+    void testGETBy(){
+        User user=new User();
+        user.setUsername("abc123");
+        user.setPassword("123");
+        System.out.println(user);
+        System.out.println(userService.register(user));
+    }
 //    @Test
 //    void testGETBy2(){
 //        String name=null;

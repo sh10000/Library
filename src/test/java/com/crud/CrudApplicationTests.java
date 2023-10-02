@@ -5,10 +5,9 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.crud.Dao.BookDao;
+import com.crud.Dao.OrderDao;
 import com.crud.Dao.UserDao;
-import com.crud.domain.Book;
-import com.crud.domain.Func;
-import com.crud.domain.Order;
+import com.crud.domain.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,6 +23,8 @@ class CrudApplicationTests {
     private BookDao bookDao;
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private OrderDao orderDao;
 @Test
     void selectByName(){
         List<String> funces=new ArrayList<>();
@@ -55,12 +56,13 @@ class CrudApplicationTests {
 
     @Test
     void save() {
-        Order order =new Order();
-        order.setBookid(1);
-        order.setBuy(0);
-        order.setUid("123");
-        order.setOrderid("dsadads");
-       bookDao.saveOrder(order);
+        Orders order =new Orders();
+        order.setStatusid(1);
+        order.setTotalAmont(100.0);
+        order.setUsername("123");
+        orderDao.addOrder(order);
+        int generatedId = order.getOrderid(); // 获取自动生成的ID
+        System.out.println("生成的订单ID：" + generatedId);
     }
 
     @Test
@@ -80,14 +82,21 @@ class CrudApplicationTests {
 
     }
     @Test
-    void saveorder() {
-
+    void changepassword() {
+        User user=new User();
+        user.setUsername("abc123");
+        user.setPassword("123456");
+        userDao.register(user);
     }
     @Test
     void testGETBy(){
-        QueryWrapper<Book> qw=new QueryWrapper<>();
-        qw.like("name","Spring");
-        System.out.println(bookDao.selectList(qw));
+      Produce produce=new Produce();
+      produce.setBookid(1);
+      produce.setQuantity(1);
+      produce.setOrderid(1);
+      produce.setUnitprice(1.1);
+      produce.setTotalprice(1.2);
+      orderDao.addBooks(produce);
     }
 
 }

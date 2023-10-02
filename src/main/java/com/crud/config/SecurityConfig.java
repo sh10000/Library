@@ -37,6 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/js/**","/css/**","/plugins/**").permitAll()
 //                .antMatchers("/books/**").permitAll()
                 .antMatchers("/upload").permitAll()
+                .antMatchers("/register").permitAll()
                 //权限认定
 //                .antMatchers("/pages/无权限.html").hasAuthority("p1")
 //                .antMatchers("/pages/无权限.html").hasAnyAuthority("admin","admIn")
