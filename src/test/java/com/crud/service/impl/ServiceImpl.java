@@ -68,4 +68,8 @@ public class ServiceImpl {
     void testOrder(){
         System.out.println(orderServer.askOrders());
     }
+    @Test
+    void delete1(){
+        orderServer.delete(12);
+    }
 }

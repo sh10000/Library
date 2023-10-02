@@ -27,4 +27,6 @@ public interface  OrderDao {
             "a.size,a.annex,a.annotations,a.outline,a.textbook,a.classification,a.readers,a.layout,a.PublicationTime,a.languages,b.quantity,b.unitprice,b.totalPrice " +
             "from orderdetails b,book a where a.id=b.produceid and b.orderid=#{orderid}")
     List<OrderBook> getOrderBook(int orderid);
+    @Delete("delete from orders where orderid=#{orderid}")
+    boolean delete(int orderid);
 }

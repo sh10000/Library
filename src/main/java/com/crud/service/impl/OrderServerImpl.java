@@ -112,4 +112,10 @@ public class OrderServerImpl implements OrderServer {
 
         return orderDao.getOrderBook(id);
     }
+
+    @Override
+    public boolean delete(int id) {
+        orderDao.delete(id);
+        return true;
+    }
 }

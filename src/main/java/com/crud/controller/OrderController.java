@@ -5,6 +5,7 @@ import com.crud.controller.utils.R;
 import com.crud.domain.OrderBook;
 import com.crud.domain.Orders;
 import com.crud.service.OrderServer;
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,5 +37,10 @@ public class OrderController {
     public R OrderBook(@PathVariable int id){
         List<OrderBook> orderBooks = orderDao.askOrderBook(id);
         return  new R(true,orderBooks,"查询成功");
+    }
+    @DeleteMapping("/deleteOrder/{id}")
+    public R DeleteOrder(@PathVariable int id){
+        orderDao.delete(id);
+        return  new R(true,"删除成功");
     }
 }

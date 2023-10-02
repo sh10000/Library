@@ -13,4 +13,5 @@ public interface OrderServer {
     List<Produce> askBooks(int id);
     List<Orders> askOrders();
     List<OrderBook> askOrderBook(int id);
+    boolean delete(int id);
 }
