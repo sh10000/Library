@@ -24,4 +24,7 @@ public class R<U> {
         this.flag = flag;
         this.msg = msg;
     }
+
+    public R(boolean b, int save, String msg) {
+    }
 }

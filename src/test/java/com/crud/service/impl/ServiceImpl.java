@@ -10,12 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @SpringBootTest
 public class ServiceImpl {
     @Autowired
     private IBookService bookDao;
+    @Autowired
+    private OrderServerImpl orderServer;
     @Autowired
     private UserServiceImpl userService;
 @Test
@@ -24,14 +28,14 @@ public class ServiceImpl {
     }
     @Test
     void save() {
+        Map<Integer, Integer> bookQuantityMap = new HashMap<>();
+        bookQuantityMap.put(977, 5); // 书籍ID为1，数量为5
+        bookQuantityMap.put(988, 3);
+        orderServer.saveOrder(bookQuantityMap);
     }
     @Test
     void update() {
-        List<Integer> order=new ArrayList<>();
-        order.add(1);
-        order.add(2);
-        order.add(3);
-        System.out.println(bookDao.saveOrder(order));}
+        }
     @Test
     void delete() {
         bookDao.removeById(22);

@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.crud.Dao.BookDao;
 import com.crud.Dao.OrderDao;
 import com.crud.domain.Book;
+import com.crud.domain.Orders;
+import com.crud.domain.Produce;
 import com.crud.service.IBookService;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +20,12 @@ import org.springframework.stereotype.Service;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class BookServiceImpl extends ServiceImpl<BookDao, Book> implements IBookService  {
     @Autowired
     private BookDao bookDao;
-    @Autowired
-    private OrderDao orderDao;
     @Override
     public boolean saveBook(Book book) {
         return bookDao.insert(book)>0;
@@ -57,19 +58,5 @@ public class BookServiceImpl extends ServiceImpl<BookDao, Book> implements IBook
         return page;
     }
 
-    @Override
-    public boolean saveOrder(List<Integer> bookid) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username=new String();
-
-        if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
-            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-            username = userDetails.getUsername();
-            // 其他用户信息也可以在 userDetails 中获取
-        }
-
-
-        return true;
-    }
 
 }
