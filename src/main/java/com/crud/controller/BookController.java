@@ -23,11 +23,13 @@ public class BookController {
         return  new R(true,bookService.list());
     }
     @PostMapping
+    @PreAuthorize("hasAuthority('p1')")
     public R save(@RequestBody Book book){
         return new R(bookService.save(book));
 
     }
     @PutMapping
+    @PreAuthorize("hasAuthority('p1')")
     public R update(@RequestBody Book book){
         return new R(bookService.modify(book));
     }

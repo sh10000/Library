@@ -22,6 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 @Service
 public class BookServiceImpl extends ServiceImpl<BookDao, Book> implements IBookService  {
@@ -57,16 +58,19 @@ public class BookServiceImpl extends ServiceImpl<BookDao, Book> implements IBook
         IPage<Book> page=new Page<>(currentPage,PageSize);
         bookDao.selectPage(page,lqw);
         long total = page.getTotal(); // 获取总记录数
-
-        // 计算 1/total 并将其赋值给每个 Book 对象
-        double fraction = total > 0 ? 1.0 / total : 0.0;
-        DecimalFormat df = new DecimalFormat("#.###"); // 保留三位小数
-        String formattedFraction = df.format(fraction);
+        Random r = new Random();
+        DecimalFormat df = new DecimalFormat("#.####"); // 保留三位小数
         List<Book> records = page.getRecords();
+
         for (Book record : records) {
-            record.setRate(Double.parseDouble(formattedFraction));
+            double randomNumber = r.nextDouble() * 10;
+            randomNumber=randomNumber/total;
+            String formattedRandomNumber = df.format(randomNumber);
+            record.setRate(Double.parseDouble(formattedRandomNumber));
         }
+
         return page;
+
     }
 
 
