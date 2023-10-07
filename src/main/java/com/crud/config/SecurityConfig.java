@@ -34,9 +34,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeHttpRequests()
                 .antMatchers("/pages/error.html").permitAll()
                 .antMatchers("/pages/login.html").permitAll()
-                .antMatchers("/js/**","/css/**","/plugins/**").permitAll()
+                .antMatchers("/pages/change.html").permitAll()
+                .antMatchers("/pages/register.html").permitAll()
+                .antMatchers("/js/**","/css/**","/plugins/**","/dist/**").permitAll()
 //                .antMatchers("/books/**").permitAll()
                 .antMatchers("/upload").permitAll()
+                .antMatchers("/changePassword").permitAll()
                 .antMatchers("/register").permitAll()
                 //权限认定
 //                .antMatchers("/pages/无权限.html").hasAuthority("p1")

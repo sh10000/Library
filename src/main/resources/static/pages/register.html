@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>无权限</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+</head>
+<body class="hold-transition login-page dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<div class="login-box">
+    <!-- /.login-logo -->
+    <div class="card card-outline card-primary">
+        <div class="card-header text-center">
+            <a class="h1"><b>酒店</b>管理系统</a>
+        </div>
+        <div class="card-body">
+            <p class="login-box-msg">注册</p>
+            <div class="input-group mb-3">
+                <input type="text" name="username" class="form-control" id="input1" placeholder="Email">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-envelope"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <input type="password" name="password" class="form-control" id="input2" placeholder="Password">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <!-- /.col -->
+                <div class="col-4">
+                    <button type="submit" onclick="sendPostRequest()" class="btn btn-primary btn-block">提交</button>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.col -->
+
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery -->
+<script src="../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../dist/js/adminlte.min.js"></script>
+<script>
+    async function sendPostRequest() {
+        const value1 =document.getElementById('input1').value;
+        const value2 =document.getElementById('input2').value;
+        const jsonData = {
+            username: value1,
+            password: value2
+        };
+
+        const response = await fetch('http://localhost:8080/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(jsonData)
+        });
+
+        if (response.ok) {
+            const jsonResponse = await response.json();
+            console.log('成功发送 PUT 请求，响应数据：', jsonResponse);
+            window.location.href="http://localhost:8080/pages/login.html"
+        } else {
+            console.error('发送 PUT 请求失败，HTTP 状态码：', response.status);
+        }
+    }
+</script>
+</body>
+</html>
