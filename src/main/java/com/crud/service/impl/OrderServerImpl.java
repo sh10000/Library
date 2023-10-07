@@ -81,8 +81,8 @@ public class OrderServerImpl implements OrderServer {
                 orderDao.putStatus(4,id);
             }
             String readers = check.getReaders();
-            if(!readers.contains("中学生") || !readers.contains("小学生") || !readers.contains("幼儿") ||
-                    !readers.contains("高职") || !readers.contains("高专") || !readers.contains("儿童")){
+            if(!readers.contains("中学生") && !readers.contains("小学生") && !readers.contains("幼儿") ||
+                    !readers.contains("高职") && !readers.contains("高专") && !readers.contains("儿童")){
                 orderDao.putStatus(4,id);
             }
 
