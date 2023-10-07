@@ -67,22 +67,22 @@ public class OrderServerImpl implements OrderServer {
         List<Produce> books=askBooks(id);
         orderDao.putStatus(3,id);
         for (Produce book:books) {
-            if(book.getQuantity()>=2){
+            if(book.getQuantity()<=2){
                 orderDao.putStatus(4,id);
             }
 
             Book check= bookDao.selectById(book.getProduceid());
             int size= Integer.parseInt(check.getPage().replaceAll("[^0-9]", ""));
-            if(size<50){
+            if(size>=50){
                 orderDao.putStatus(4,id);
             }
             int page= Integer.parseInt(check.getSize().replaceAll("[^0-9]", ""));
-            if(page>27||page<18){
+            if(page<=27&&page>=18){
                 orderDao.putStatus(4,id);
             }
             String readers = check.getReaders();
-            if(readers.contains("中学生") || readers.contains("小学生") || readers.contains("幼儿") ||
-                    readers.contains("高职") || readers.contains("高专") || readers.contains("儿童")){
+            if(!readers.contains("中学生") || !readers.contains("小学生") || !readers.contains("幼儿") ||
+                    !readers.contains("高职") || !readers.contains("高专") || !readers.contains("儿童")){
                 orderDao.putStatus(4,id);
             }
 
